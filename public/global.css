@@ -1,0 +1,77 @@
+:root {
+  /* Colors */
+  --triplemint-green: #00d7a0;
+  --dark-gray: #404040;
+  --medium-gray: #767676;
+  --light-gray: #d8d8d8;
+  --red: #ff3400;
+}
+
+/* Fonts */
+@font-face {
+  font-family: "ConduitMdITCTTMedium";
+  src: url("https://static.triplemint.com/jupiter/3f4ca0ff9424fd53633c150d1efc38c32ce4c594/static/fonts/333DC2_3_0.eot");
+  src: url("https://static.triplemint.com/jupiter/3f4ca0ff9424fd53633c150d1efc38c32ce4c594/static/fonts/333DC2_3_0.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://static.triplemint.com/jupiter/3f4ca0ff9424fd53633c150d1efc38c32ce4c594/static/fonts/333DC2_3_0.woff2")
+      format("woff2"),
+    url("https://static.triplemint.com/jupiter/3f4ca0ff9424fd53633c150d1efc38c32ce4c594/static/fonts/333DC2_3_0.woff")
+      format("woff"),
+    url("https://static.triplemint.com/jupiter/3f4ca0ff9424fd53633c150d1efc38c32ce4c594/static/fonts/333DC2_3_0.ttf")
+      format("truetype");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "ConduitMdITCTTMedium", serif;
+}
+
+h4 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: normal;
+}
+
+h5 {
+  margin: 0 0 2px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+input[type="text"] {
+  border: 1px solid var(--light-gray);
+  padding: 8px;
+}
+
+::placeholder {
+  color: var(--light-gray);
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid var(--light-gray);
+  padding: 8px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+button:first-of-type,
+button + button {
+  border-right-width: 0;
+}
+
+button:last-of-type {
+  border-right-width: 1px;
+}
+
+button.selected {
+  font-weight: bold;
+  border-color: var(--triplemint-green);
+  border-right-width: 1px;
+}
+
+button.selected + button {
+  border-left-width: 0;
+}
