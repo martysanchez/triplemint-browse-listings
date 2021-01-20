@@ -2,6 +2,10 @@
 
 This project is a simplified representation of the Triplemint listings page built with Svelte 3.
 
+## Deployed Version
+
+A deployed version of this web app can be found at **[https://triplemint-browse-listings.vercel.app/](https://triplemint-browse-listings.vercel.app/)**
+
 ## Project Features
 
 - Responsive Grid Layout
