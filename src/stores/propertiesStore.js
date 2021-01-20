@@ -6,15 +6,16 @@ function createPropertiesStore() {
   const { subscribe, set, update } = writable(propertyData);
   const sortByPriceDesc = (list) => list.sort((a, b) => b.price - a.price);
   const sortByPriceAsc = (list) => list.sort((a, b) => a.price - b.price);
+  const minPrice = sortByPriceAsc(propertyData)[0].price;
+  console.log("minPrice", minPrice);
+  const maxPrice = sortByPriceDesc(propertyData)[0].price;
+  console.log("maxPrice", maxPrice);
 
   return {
     subscribe,
-    sortPriceDesc: () => {
-      update((propertyList) => sortByPriceDesc(propertyList));
-    },
-    sortPriceAsc: () => {
-      update((propertyList) => sortByPriceAsc(propertyList));
-    },
+    sortPriceDesc: () =>
+      update((propertyList) => sortByPriceDesc(propertyList)),
+    sortPriceAsc: () => update((propertyList) => sortByPriceAsc(propertyList)),
     filter: (filters, sort) => {
       update(() => {
         var tempPropertyList = propertyData.filter((property) => {
@@ -40,6 +41,8 @@ function createPropertiesStore() {
     clearFilters: () => {
       set(propertyData);
     },
+    getMinPrice: () => minPrice,
+    getMaxPrice: () => maxPrice,
   };
 }
 

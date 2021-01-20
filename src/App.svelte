@@ -2,6 +2,8 @@
   import { properties } from "./stores/propertiesStore.js";
   import PropertyListing from "./PropertyListing.svelte";
   import ListingControls from "./ListingControls.svelte";
+
+  let showSliders = false;
 </script>
 
 <main>
@@ -12,10 +14,22 @@
       width="140"
       alt="Triplemint"
     />
+    <div class="version-container">
+      <span
+        class="link"
+        class:selected={!showSliders}
+        on:click={() => (showSliders = false)}>v1</span
+      >
+      <span
+        class="link"
+        class:selected={showSliders}
+        on:click={() => (showSliders = true)}>v2</span
+      >
+    </div>
   </section>
 
   <section>
-    <ListingControls />
+    <ListingControls {showSliders} />
   </section>
 
   <div class="grid-message">
@@ -44,6 +58,18 @@
     background-repeat: repeat;
     background-position-y: 2%;
     height: 100vh;
+  }
+
+  .version-container {
+    float: right;
+  }
+
+  .version-container span {
+    color: var(--light-gray);
+  }
+
+  .version-container span.selected {
+    color: var(--dark-gray);
   }
 
   section {

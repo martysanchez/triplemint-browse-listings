@@ -16,6 +16,7 @@
     priceMax: "",
   };
 
+  export let showSliders;
   let currentSort = null;
   let currentFilter = { ...defaultFilters };
   $: filterApplied =
@@ -73,33 +74,80 @@
   <div class="filter-container">
     <h4>
       Filter
-      {#if filterApplied}<span
-          class="clear-filters"
-          on:click={handleClearFilters}>clear</span
-        >{/if}
+      {#if filterApplied}
+        <span class="link" on:click={handleClearFilters}>clear</span>
+      {/if}
     </h4>
-    <div class="price-filter-container">
-      <div>
-        <h5><label for="minPrice">Min Price</label></h5>
-        <input
-          id="minPrice"
-          type="text"
-          placeholder="ex. $500,000"
-          on:input={handlePriceMinChange}
-          bind:value={currentFilter.priceMin}
-        />
+
+    {#if showSliders}
+      <div class="price-filter-container sliders">
+        <div>
+          <div class="price-filter-label">
+            <h5><label for="minPriceSlider">Min Price</label></h5>
+            <span>
+              {currentFilter.priceMin === ""
+                ? " --- "
+                : ` - $${new Intl.NumberFormat().format(
+                    currentFilter.priceMin
+                  )}`}</span
+            >
+          </div>
+          <input
+            type="range"
+            id="minPriceSlider"
+            min={properties.getMinPrice() - (properties.getMinPrice() % 100000)}
+            max={properties.getMaxPrice() + (properties.getMaxPrice() % 100000)}
+            step="100000"
+            on:input={handlePriceMinChange}
+            bind:value={currentFilter.priceMin}
+          />
+        </div>
+        <div>
+          <div class="price-filter-label">
+            <h5><label for="maxPriceSlider">Max Price</label></h5>
+            <span>
+              {currentFilter.priceMax === ""
+                ? " --- "
+                : ` - $${new Intl.NumberFormat().format(
+                    currentFilter.priceMax
+                  )}`}</span
+            >
+          </div>
+          <input
+            type="range"
+            id="maxPriceSlider"
+            min={properties.getMinPrice() - (properties.getMinPrice() % 100000)}
+            max={properties.getMaxPrice() + (properties.getMaxPrice() % 100000)}
+            step="100000"
+            on:input={handlePriceMaxChange}
+            bind:value={currentFilter.priceMax}
+          />
+        </div>
       </div>
-      <div>
-        <h5><label for="maxPrice">Max Price</label></h5>
-        <input
-          id="maxPrice"
-          type="text"
-          placeholder="ex. $1,000,000"
-          on:input={handlePriceMaxChange}
-          bind:value={currentFilter.priceMax}
-        />
+    {:else}
+      <div class="price-filter-container">
+        <div>
+          <h5><label for="minPrice">Min Price</label></h5>
+          <input
+            id="minPrice"
+            type="text"
+            placeholder="ex. $500,000"
+            on:input={handlePriceMinChange}
+            bind:value={currentFilter.priceMin}
+          />
+        </div>
+        <div>
+          <h5><label for="maxPrice">Max Price</label></h5>
+          <input
+            id="maxPrice"
+            type="text"
+            placeholder="ex. $1,000,000"
+            on:input={handlePriceMaxChange}
+            bind:value={currentFilter.priceMax}
+          />
+        </div>
       </div>
-    </div>
+    {/if}
     <h5>Bedrooms</h5>
     {#each bedroomFilters as filter (filter.value)}
       <button
@@ -138,20 +186,6 @@
     }
   }
 
-  .clear-filters {
-    font-size: 16px;
-    font-weight: normal;
-    color: var(--medium-gray);
-    cursor: pointer;
-    display: inline-block;
-    margin-left: 2px;
-    vertical-align: middle;
-  }
-
-  .clear-filters:hover {
-    color: var(--red);
-  }
-
   .filter-container {
     padding-bottom: 20px;
     border-bottom: 1px solid var(--light-gray);
@@ -176,7 +210,21 @@
     margin-bottom: 12px;
   }
 
-  input[type="text"] {
+  .price-filter-container > div {
     margin-right: 10px;
+  }
+
+  .price-filter-container span {
+    margin-left: 4px;
+  }
+
+  .price-filter-container.sliders {
+    justify-content: space-between;
+  }
+
+  .price-filter-label {
+    display: flex;
+    justify-content: flex-start;
+    width: 160px;
   }
 </style>
