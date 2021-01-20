@@ -7,9 +7,7 @@ function createPropertiesStore() {
   const sortByPriceDesc = (list) => list.sort((a, b) => b.price - a.price);
   const sortByPriceAsc = (list) => list.sort((a, b) => a.price - b.price);
   const minPrice = sortByPriceAsc(propertyData)[0].price;
-  console.log("minPrice", minPrice);
   const maxPrice = sortByPriceDesc(propertyData)[0].price;
-  console.log("maxPrice", maxPrice);
 
   return {
     subscribe,
