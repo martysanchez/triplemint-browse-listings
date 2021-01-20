@@ -13,7 +13,7 @@
 </script>
 
 <div class="property-listing">
-  <img src={imgURL} alt={display_address} />
+  <img src={imgURL} alt={display_address} width="728" height="486" />
   <div class="property-details">
     <p class="address">{display_address}</p>
     <p class="region">{building.region.text}</p>
@@ -32,6 +32,7 @@
 
   img {
     width: 100%;
+    height: auto;
   }
 
   .property-details {

@@ -16,9 +16,12 @@
     priceMax: "",
   };
 
-  let currentFilter = { ...defaultFilters };
-  let filterApplied = false;
   let currentSort = null;
+  let currentFilter = { ...defaultFilters };
+  $: filterApplied =
+    currentFilter.bedrooms !== null ||
+    currentFilter.priceMin !== "" ||
+    currentFilter.priceMax !== "";
 
   function handleSortPriceDesc() {
     currentSort = "desc";
@@ -31,7 +34,7 @@
   }
 
   function handleFilterByBedroom(value) {
-    filterApplied = true;
+    // filterApplied = true;
     currentFilter.bedrooms = value;
     properties.filter(currentFilter, currentSort);
   }
@@ -39,7 +42,7 @@
   // Debounce the inputs on the price min and price max inputs
   // so that updates will only be processed after the provided delay
   let applyPriceMinChange = debounce((value) => {
-    filterApplied = true;
+    // filterApplied = true;
     currentFilter.priceMin = value;
     properties.filter(currentFilter, currentSort);
   }, 1000);
@@ -49,7 +52,7 @@
   }
 
   let applyPriceMaxChange = debounce((value) => {
-    filterApplied = true;
+    // filterApplied = true;
     currentFilter.priceMax = value;
     properties.filter(currentFilter, currentSort);
   }, 1000);
@@ -59,7 +62,7 @@
   }
 
   function handleClearFilters() {
-    filterApplied = false;
+    // filterApplied = false;
     currentFilter = { ...defaultFilters };
     properties.clearFilters();
   }
