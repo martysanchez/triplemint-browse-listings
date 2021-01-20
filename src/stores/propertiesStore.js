@@ -4,14 +4,16 @@ import propertyData from "../data/properties.json";
 // Custom store that contains the sorted and filtered property list
 function createPropertiesStore() {
   const { subscribe, set, update } = writable(propertyData);
+  const sortByPriceDesc = (list) => list.sort((a, b) => b.price - a.price);
+  const sortByPriceAsc = (list) => list.sort((a, b) => a.price - b.price);
 
   return {
     subscribe,
     sortPriceDesc: () => {
-      update((propertyList) => propertyList.sort((a, b) => b.price - a.price));
+      update((propertyList) => sortByPriceDesc(propertyList));
     },
     sortPriceAsc: () => {
-      update((propertyList) => propertyList.sort((a, b) => a.price - b.price));
+      update((propertyList) => sortByPriceAsc(propertyList));
     },
     filter: (filters, sort) => {
       update(() => {
@@ -24,12 +26,12 @@ function createPropertiesStore() {
           );
         });
 
-        // Since filtering above always occurs on the complete properties list,
-        // sorting needs to be re-applied if applicable
+        // Since filtering always occurs on the complete properties list,
+        // sorting needs to be re-applied if selected
         if (sort === "desc") {
-          tempPropertyList.sort((a, b) => b.price - a.price);
+          sortByPriceDesc(tempPropertyList);
         } else if (sort === "asc") {
-          tempPropertyList.sort((a, b) => a.price - b.price);
+          sortByPriceAsc(tempPropertyList);
         }
 
         return tempPropertyList;
