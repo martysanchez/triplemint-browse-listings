@@ -12,6 +12,13 @@ A deployed version of this web app can be found at **[https://triplemint-browse-
 - Filters (min price, max price, number of bedrooms)
 - Sorting (by price ascending or descending)
 
+## Versions
+
+There are two implementations of the price filters
+
+- v1 - price filters as text inputs
+- v2 - price filters as range inputs (sliders)
+
 ## To run the project locally
 
 Clone the repository from GitHub
