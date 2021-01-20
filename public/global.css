@@ -61,6 +61,7 @@ button {
   background-color: transparent;
   border: 1px solid var(--light-gray);
   padding: 8px;
+  margin: 0;
   text-transform: uppercase;
   cursor: pointer;
   min-width: 48px;

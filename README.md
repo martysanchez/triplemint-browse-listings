@@ -6,15 +6,13 @@ This project is a simplified representation of the Triplemint listings page buil
 
 A deployed version of this web app can be found at **[https://triplemint-browse-listings.vercel.app/](https://triplemint-browse-listings.vercel.app/)**
 
-## Project Features
+## Compatibility
 
-- Responsive Grid Layout
-- Filters (min price, max price, number of bedrooms)
-- Sorting (by price ascending or descending)
+This web app has been tested in the latest versions of Chrome, Firefox and Safari.
 
-## Versions
+## Filters
 
-There are two implementations of the price filters
+There are two implementations of the price filters. Links are provided within the app to toggle between versions.
 
 - v1 - price filters as text inputs
 - v2 - price filters as range inputs (sliders)
