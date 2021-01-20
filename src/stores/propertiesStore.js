@@ -6,8 +6,8 @@ function createPropertiesStore() {
   const { subscribe, set, update } = writable(propertyData);
   const sortByPriceDesc = (list) => list.sort((a, b) => b.price - a.price);
   const sortByPriceAsc = (list) => list.sort((a, b) => a.price - b.price);
-  const minPrice = sortByPriceAsc(propertyData)[0].price;
-  const maxPrice = sortByPriceDesc(propertyData)[0].price;
+  const minPrice = sortByPriceAsc([...propertyData])[0].price;
+  const maxPrice = sortByPriceDesc([...propertyData])[0].price;
 
   return {
     subscribe,
